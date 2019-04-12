@@ -1,0 +1,1799 @@
+<div class="sheet-overall-wrapper">
+	<div class="sheet-row">
+		<div class="sheet-col-1-12 sheet-core-stat-label sheet-center">Name</div>
+		<div class="sheet-col-1-3 sheet-small-label sheet-center"><input class="sheet-center" type="text" name="attr_character_name" value=""></div>
+		<div class="sheet-col-1-12 sheet-core-stat-label sheet-center">Type</div>
+		<div class="sheet-col-1-8 sheet-small-label sheet-center">
+		    <select name="attr_unittype">
+                <option value="Ranger">Ranger</option>
+                <option value="Arcanist">Arcanist</option>
+                <option value="Archer">Archer</option>
+                <option value="Barbarian">Barbarian</option>
+                <option value="Conjurer">Conjurer</option>
+                <option value="Guardsman">Guardsman</option>
+                <option value="Hound">Hound</option>
+                <option value="Warhound">Warhound</option>
+                <option value="Bloodhound">Bloodhound</option>
+                <option value="Knight">Knight</option>
+                <option value="Man-at-Arms">Man-at-Arms</option>
+                <option value="Raptor">Raptor</option>
+                <option value="Recruit">Recruit</option>
+                <option value="Rogue">Rogue</option>
+                <option value="Savage">Savage</option>
+                <option value="Swordsman">Swordsman</option>
+                <option value="Templar">Templar</option>
+                <option value="Tracker">Tracker</option>
+                <option value="Enemy">Enemy</option>
+            </select>
+		</div>
+		<div class="sheet-col-1-12 sheet-core-stat-label sheet-center">Level</div>
+		<div class="sheet-col-1-12 sheet-small-label sheet-center"><input class="sheet-center" type="text" name="attr_level" value="0"></div>
+		<div class="sheet-col-1-8 sheet-core-stat-label sheet-center">Experience</div>
+		<div class="sheet-col-1-12 sheet-small-label sheet-center"><input class="sheet-center" type="text" name="attr_experience" value="0"></div>
+	</div>
+	<div class="sheet-row">
+		<div class="sheet-col-1-10 sheet-core-stat-label sheet-center">
+            Move
+            <button class="sheet-headerbutton" type="roll" name="roll_Move" value="&{template:ShadowdeepRangers} {{ability=1}} {{title=Move}} {{subheader=@{character_name} Stat Roll}} {{check=[[1d20+(?{Move|@{move}})]]}} {{target=[[?{TN|20}]]}}"></button>
+		</div>
+		<div class="sheet-col-1-10 sheet-core-stat-label sheet-center">
+            Fight
+            <button class="sheet-headerbutton" type="roll" name="roll_Fight" value="&{template:ShadowdeepRangers} {{weapon=1}} {{subheader=@{character_name} vs @{target|Target1|character_name}}} {{title=Fight}} {{fight=[[1d20+(?{Fight|@{fight}})]]}} {{targetfight=[[1d20+(@{target|Target1|fight})]]}} {{armour=[[(?{Armour|@{armour}})]]}} {{targetarmour=[[(@{target|Target1|armour})]]}} 0"></button>
+        </div>
+		<div class="sheet-col-1-10 sheet-core-stat-label sheet-center">
+            Shoot
+            <button class="sheet-headerbutton" type="roll" name="roll_Shoot" value="&{template:ShadowdeepRangers} {{weapon=1}} {{subheader=@{character_name} vs @{target|Target1|character_name}}} {{title=Shoot}} {{shoot=[[1d20+(?{Shoot|@{shoot}})]]}} {{targetfight=[[1d20+(@{target|Target1|fight})]]}} {{armour=[[(?{Armour|@{armour}})]]}} {{targetarmour=[[(@{target|Target1|armour})]]}} 0"></button>
+		</div>
+		<div class="sheet-col-1-8 sheet-core-stat-label sheet-center">
+            Armour
+            <button class="sheet-headerbutton" type="roll" name="roll_Armour" value="&{template:ShadowdeepRangers} {{ability=1}} {{title=Armour}} {{subheader=@{character_name} Stat Roll}} {{check=[[1d20+(?{Armour|@{armour}})]]}} {{target=[[?{TN|20}]]}}"></button>
+        </div>
+		<div class="sheet-col-1-10 sheet-core-stat-label sheet-center">
+            Will
+            <button class="sheet-headerbutton" type="roll" name="roll_Will" value="&{template:ShadowdeepRangers} {{ability=1}} {{title=Will}} {{subheader=@{character_name} Stat Roll}} {{check=[[1d20+(?{Will|@{will}})]]}} {{target=[[?{TN|20}]]}}"></button>
+            </div>
+		<div class="sheet-col-1-8 sheet-core-stat-label sheet-center">
+            Health
+            <button class="sheet-headerbutton" type="roll" name="roll_Health" value="&{template:ShadowdeepRangers} {{ability=1}} {{title=Health}} {{subheader=@{character_name} Stat Roll}} {{check=[[1d20+(?{Health|@{health}})]]}} {{target=[[?{TN|20}]]}}"></button>
+        </div>
+		<div class="sheet-col-1-5 sheet-core-stat-label sheet-center">Current Health</div>
+		<div class="sheet-col-3-20 sheet-core-stat-label sheet-center">Recruitment</div>
+	</div>
+	<div class="sheet-row">
+		<div class="sheet-col-1-10 sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_move" value="6"></div>
+		<div class="sheet-col-1-10 sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_fight" value="2"></div>
+		<div class="sheet-col-1-10 sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_shoot" value="1"></div>
+		<div class="sheet-col-1-8 sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_armour" value="10"></div>
+		<div class="sheet-col-1-10 sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_will" value="4"></div>
+		<div class="sheet-col-1-8 sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_health_max" value="18"></div>
+		<div class="sheet-col-1-5 sheet-small-label sheet-center"><input class="sheet-center" type="number" name="attr_health" value="18"></div>
+		<div class="sheet-col-3-20 sheet-small-label sheet-center"><input class="sheet-center" type="number" name="attr_recruitment" value="100"></div>
+	</div>
+	<div class="sheet-row">
+		<div class="sheet-col-3-5">
+            <div class="sheet-core-stat-label sheet-center">Heroic Abilities</div>
+            <div class="sheet-col-1-2 sheet-padl">
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_ability01_used"><span></span>
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_ability01">
+                            <option value="No Ability" selected></option>
+                            <option value="Blend Into Shadows">Blend Into Shadows</option>
+                            <option value="Dash">Dash</option>
+                            <option value="Deadly Shot">Deadly Shot</option>
+                            <option value="Deadly Strike">Deadly Strike</option>
+                            <option value="Distraction">Distraction</option>
+                            <option value="Dive for Cover">Dive for Cover</option>
+                            <option value="Evade">Evade</option>
+                            <option value="Focus">Focus</option>
+                            <option value="Frenzied Attack">Frenzied Attack</option>
+                            <option value="Halt Undead">Halt Undead</option>
+                            <option value="Hand of Fate">Hand of Fate</option>
+                            <option value="Inner Strength">Inner Strength</option>
+                            <option value="Parry">Parry</option>
+                            <option value="Powerful Blow">Powerful Blow</option>
+                            <option value="Roll with the Punch">Roll with the Punch</option>
+                            <option value="Shove">Shove</option>
+                            <option value="Steady Aim">Steady Aim</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="attr_ability01_desc" value="">
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Ability01" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{ability01}}} {{subheader=@{character_name} Heroic Ability}} {{heroics=@{ability01_desc}}} {{allow=[[@{ability01_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_ability02_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_ability02">
+                            <option value="No Ability" selected></option>
+                            <option value="Blend Into Shadows">Blend Into Shadows</option>
+                            <option value="Dash">Dash</option>
+                            <option value="Deadly Shot">Deadly Shot</option>
+                            <option value="Deadly Strike">Deadly Strike</option>
+                            <option value="Distraction">Distraction</option>
+                            <option value="Dive for Cover">Dive for Cover</option>
+                            <option value="Evade">Evade</option>
+                            <option value="Focus">Focus</option>
+                            <option value="Frenzied Attack">Frenzied Attack</option>
+                            <option value="Halt Undead">Halt Undead</option>
+                            <option value="Hand of Fate">Hand of Fate</option>
+                            <option value="Inner Strength">Inner Strength</option>
+                            <option value="Parry">Parry</option>
+                            <option value="Powerful Blow">Powerful Blow</option>
+                            <option value="Roll with the Punch">Roll with the Punch</option>
+                            <option value="Shove">Shove</option>
+                            <option value="Steady Aim">Steady Aim</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="attr_ability02_desc" value="">
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Ability02" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{ability02}}} {{subheader=@{character_name} Heroic Ability}} {{heroics=@{ability02_desc}}} {{allow=[[@{ability02_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_ability03_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_ability03">
+                            <option value="No Ability" selected></option>
+                            <option value="Blend Into Shadows">Blend Into Shadows</option>
+                            <option value="Dash">Dash</option>
+                            <option value="Deadly Shot">Deadly Shot</option>
+                            <option value="Deadly Strike">Deadly Strike</option>
+                            <option value="Distraction">Distraction</option>
+                            <option value="Dive for Cover">Dive for Cover</option>
+                            <option value="Evade">Evade</option>
+                            <option value="Focus">Focus</option>
+                            <option value="Frenzied Attack">Frenzied Attack</option>
+                            <option value="Halt Undead">Halt Undead</option>
+                            <option value="Hand of Fate">Hand of Fate</option>
+                            <option value="Inner Strength">Inner Strength</option>
+                            <option value="Parry">Parry</option>
+                            <option value="Powerful Blow">Powerful Blow</option>
+                            <option value="Roll with the Punch">Roll with the Punch</option>
+                            <option value="Shove">Shove</option>
+                            <option value="Steady Aim">Steady Aim</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="attr_ability03_desc" value="">
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Ability03" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{ability03}}} {{subheader=@{character_name} Heroic Ability}} {{heroics=@{ability03_desc}}} {{allow=[[@{ability03_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_ability04_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_ability04">
+                            <option value="No Ability" selected></option>
+                            <option value="Blend Into Shadows">Blend Into Shadows</option>
+                            <option value="Dash">Dash</option>
+                            <option value="Deadly Shot">Deadly Shot</option>
+                            <option value="Deadly Strike">Deadly Strike</option>
+                            <option value="Distraction">Distraction</option>
+                            <option value="Dive for Cover">Dive for Cover</option>
+                            <option value="Evade">Evade</option>
+                            <option value="Focus">Focus</option>
+                            <option value="Frenzied Attack">Frenzied Attack</option>
+                            <option value="Halt Undead">Halt Undead</option>
+                            <option value="Hand of Fate">Hand of Fate</option>
+                            <option value="Inner Strength">Inner Strength</option>
+                            <option value="Parry">Parry</option>
+                            <option value="Powerful Blow">Powerful Blow</option>
+                            <option value="Roll with the Punch">Roll with the Punch</option>
+                            <option value="Shove">Shove</option>
+                            <option value="Steady Aim">Steady Aim</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="attr_ability04_desc" value="">
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Ability04" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{ability04}}} {{subheader=@{character_name} Heroic Ability}} {{heroics=@{ability04_desc}}} {{allow=[[@{ability04_used}]]}}"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="sheet-col-11-24 sheet-padl">
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_ability05_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_ability05">
+                            <option value="No Ability" selected></option>
+                            <option value="Blend Into Shadows">Blend Into Shadows</option>
+                            <option value="Dash">Dash</option>
+                            <option value="Deadly Shot">Deadly Shot</option>
+                            <option value="Deadly Strike">Deadly Strike</option>
+                            <option value="Distraction">Distraction</option>
+                            <option value="Dive for Cover">Dive for Cover</option>
+                            <option value="Evade">Evade</option>
+                            <option value="Focus">Focus</option>
+                            <option value="Frenzied Attack">Frenzied Attack</option>
+                            <option value="Halt Undead">Halt Undead</option>
+                            <option value="Hand of Fate">Hand of Fate</option>
+                            <option value="Inner Strength">Inner Strength</option>
+                            <option value="Parry">Parry</option>
+                            <option value="Powerful Blow">Powerful Blow</option>
+                            <option value="Roll with the Punch">Roll with the Punch</option>
+                            <option value="Shove">Shove</option>
+                            <option value="Steady Aim">Steady Aim</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="attr_ability05_desc" value="">
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Ability05" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{ability05}}} {{subheader=@{character_name} Heroic Ability}} {{heroics=@{ability05_desc}}} {{allow=[[@{ability05_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_ability06_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_ability06">
+                            <option value="No Ability" selected></option>
+                            <option value="Blend Into Shadows">Blend Into Shadows</option>
+                            <option value="Dash">Dash</option>
+                            <option value="Deadly Shot">Deadly Shot</option>
+                            <option value="Deadly Strike">Deadly Strike</option>
+                            <option value="Distraction">Distraction</option>
+                            <option value="Dive for Cover">Dive for Cover</option>
+                            <option value="Evade">Evade</option>
+                            <option value="Focus">Focus</option>
+                            <option value="Frenzied Attack">Frenzied Attack</option>
+                            <option value="Halt Undead">Halt Undead</option>
+                            <option value="Hand of Fate">Hand of Fate</option>
+                            <option value="Inner Strength">Inner Strength</option>
+                            <option value="Parry">Parry</option>
+                            <option value="Powerful Blow">Powerful Blow</option>
+                            <option value="Roll with the Punch">Roll with the Punch</option>
+                            <option value="Shove">Shove</option>
+                            <option value="Steady Aim">Steady Aim</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="attr_ability06_desc" value="">
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Ability06" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{ability06}}} {{subheader=@{character_name} Heroic Ability}} {{heroics=@{ability06_desc}}} {{allow=[[@{ability06_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_ability07_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_ability07">
+                            <option value="No Ability" selected></option>
+                            <option value="Blend Into Shadows">Blend Into Shadows</option>
+                            <option value="Dash">Dash</option>
+                            <option value="Deadly Shot">Deadly Shot</option>
+                            <option value="Deadly Strike">Deadly Strike</option>
+                            <option value="Distraction">Distraction</option>
+                            <option value="Dive for Cover">Dive for Cover</option>
+                            <option value="Evade">Evade</option>
+                            <option value="Focus">Focus</option>
+                            <option value="Frenzied Attack">Frenzied Attack</option>
+                            <option value="Halt Undead">Halt Undead</option>
+                            <option value="Hand of Fate">Hand of Fate</option>
+                            <option value="Inner Strength">Inner Strength</option>
+                            <option value="Parry">Parry</option>
+                            <option value="Powerful Blow">Powerful Blow</option>
+                            <option value="Roll with the Punch">Roll with the Punch</option>
+                            <option value="Shove">Shove</option>
+                            <option value="Steady Aim">Steady Aim</option>
+                        </select>
+                    </div>
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Ability07" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{ability07}}} {{subheader=@{character_name} Heroic Ability}} {{heroics=@{ability07_desc}}} {{allow=[[@{ability07_used}]]}}"></button>
+                    </div>
+                </div>
+                <input type="hidden" name="attr_ability07_desc" value="">
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_ability08_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_ability08">
+                            <option value="No Ability" selected></option>
+                            <option value="Blend Into Shadows">Blend Into Shadows</option>
+                            <option value="Dash">Dash</option>
+                            <option value="Deadly Shot">Deadly Shot</option>
+                            <option value="Deadly Strike">Deadly Strike</option>
+                            <option value="Distraction">Distraction</option>
+                            <option value="Dive for Cover">Dive for Cover</option>
+                            <option value="Evade">Evade</option>
+                            <option value="Focus">Focus</option>
+                            <option value="Frenzied Attack">Frenzied Attack</option>
+                            <option value="Halt Undead">Halt Undead</option>
+                            <option value="Hand of Fate">Hand of Fate</option>
+                            <option value="Inner Strength">Inner Strength</option>
+                            <option value="Parry">Parry</option>
+                            <option value="Powerful Blow">Powerful Blow</option>
+                            <option value="Roll with the Punch">Roll with the Punch</option>
+                            <option value="Shove">Shove</option>
+                            <option value="Steady Aim">Steady Aim</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="attr_ability08_desc" value="">
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Ability08" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{ability08}}} {{subheader=@{character_name} Heroic Ability}} {{heroics=@{ability08_desc}}} {{allow=[[@{ability08_used}]]}}"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="sheet-core-stat-label sheet-center">Spells</div>
+            <div class="sheet-col-1-2 sheet-padl">
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_spell01_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_spell01">
+                            <option value="No Spell" selected></option>
+                            <option value="Burning Light">Burning Light</option>
+                            <option value="Burning Mark">Burning Mark</option>
+                            <option value="Enchanted Steel">Enchanted Steel</option>
+                            <option value="Heal">Heal</option>
+                            <option value="Hold Creature">Hold Creature</option>
+                            <option value="Magic Bolt">Magic Bolt</option>
+                            <option value="Shield of Light">Shield of Light</option>
+                            <option value="Smoke">Smoke</option>
+                            <option value="Strong Heart">Strong Heart</option>
+                            <option value="Translate">Translate</option>
+                        </select>
+                    </div>
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Spell01" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{spell01}}} {{subheader=@{character_name} Spell Casting}} {{heroics=@{spell01_desc}}} {{allow=[[@{spell01_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_spell02_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_spell02">
+                            <option value="No Spell" selected></option>
+                            <option value="Burning Light">Burning Light</option>
+                            <option value="Burning Mark">Burning Mark</option>
+                            <option value="Enchanted Steel">Enchanted Steel</option>
+                            <option value="Heal">Heal</option>
+                            <option value="Hold Creature">Hold Creature</option>
+                            <option value="Magic Bolt">Magic Bolt</option>
+                            <option value="Shield of Light">Shield of Light</option>
+                            <option value="Smoke">Smoke</option>
+                            <option value="Strong Heart">Strong Heart</option>
+                            <option value="Translate">Translate</option>
+                        </select>
+                    </div>
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Spell02" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{spell02}}} {{subheader=@{character_name} Spell Casting}} {{heroics=@{spell02_desc}}} {{allow=[[@{spell02_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_spell03_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_spell03">
+                            <option value="No Spell" selected></option>
+                            <option value="Burning Light">Burning Light</option>
+                            <option value="Burning Mark">Burning Mark</option>
+                            <option value="Enchanted Steel">Enchanted Steel</option>
+                            <option value="Heal">Heal</option>
+                            <option value="Hold Creature">Hold Creature</option>
+                            <option value="Magic Bolt">Magic Bolt</option>
+                            <option value="Shield of Light">Shield of Light</option>
+                            <option value="Smoke">Smoke</option>
+                            <option value="Strong Heart">Strong Heart</option>
+                            <option value="Translate">Translate</option>
+                        </select>
+                    </div>
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Spell03" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{spell03}}} {{subheader=@{character_name} Spell Casting}} {{heroics=@{spell03_desc}}} {{allow=[[@{spell03_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_spell04_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_spell04">
+                            <option value="No Spell" selected></option>
+                            <option value="Burning Light">Burning Light</option>
+                            <option value="Burning Mark">Burning Mark</option>
+                            <option value="Enchanted Steel">Enchanted Steel</option>
+                            <option value="Heal">Heal</option>
+                            <option value="Hold Creature">Hold Creature</option>
+                            <option value="Magic Bolt">Magic Bolt</option>
+                            <option value="Shield of Light">Shield of Light</option>
+                            <option value="Smoke">Smoke</option>
+                            <option value="Strong Heart">Strong Heart</option>
+                            <option value="Translate">Translate</option>
+                        </select>
+                    </div>
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Spell04" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{spell04}}} {{subheader=@{character_name} Spell Casting}} {{heroics=@{spell04_desc}}} {{allow=[[@{spell04_used}]]}}"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="sheet-col-11-24 sheet-padl">
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_spell05_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_spell05">
+                            <option value="No Spell" selected></option>
+                            <option value="Burning Light">Burning Light</option>
+                            <option value="Burning Mark">Burning Mark</option>
+                            <option value="Enchanted Steel">Enchanted Steel</option>
+                            <option value="Heal">Heal</option>
+                            <option value="Hold Creature">Hold Creature</option>
+                            <option value="Magic Bolt">Magic Bolt</option>
+                            <option value="Shield of Light">Shield of Light</option>
+                            <option value="Smoke">Smoke</option>
+                            <option value="Strong Heart">Strong Heart</option>
+                            <option value="Translate">Translate</option>
+                        </select>
+                    </div>
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Spell05" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{spell05}}} {{subheader=@{character_name} Spell Casting}} {{heroics=@{spell05_desc}}} {{allow=[[@{spell05_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_spell06_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_spell06">
+                            <option value="No Spell" selected></option>
+                            <option value="Burning Light">Burning Light</option>
+                            <option value="Burning Mark">Burning Mark</option>
+                            <option value="Enchanted Steel">Enchanted Steel</option>
+                            <option value="Heal">Heal</option>
+                            <option value="Hold Creature">Hold Creature</option>
+                            <option value="Magic Bolt">Magic Bolt</option>
+                            <option value="Shield of Light">Shield of Light</option>
+                            <option value="Smoke">Smoke</option>
+                            <option value="Strong Heart">Strong Heart</option>
+                            <option value="Translate">Translate</option>
+                        </select>
+                    </div>
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Spell06" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{spell06}}} {{subheader=@{character_name} Spell Casting}} {{heroics=@{spell06_desc}}} {{allow=[[@{spell06_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_spell07_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_spell07">
+                            <option value="No Spell" selected></option>
+                            <option value="Burning Light">Burning Light</option>
+                            <option value="Burning Mark">Burning Mark</option>
+                            <option value="Enchanted Steel">Enchanted Steel</option>
+                            <option value="Heal">Heal</option>
+                            <option value="Hold Creature">Hold Creature</option>
+                            <option value="Magic Bolt">Magic Bolt</option>
+                            <option value="Shield of Light">Shield of Light</option>
+                            <option value="Smoke">Smoke</option>
+                            <option value="Strong Heart">Strong Heart</option>
+                            <option value="Translate">Translate</option>
+                        </select>
+                    </div>
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Spell07" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{spell07}}} {{subheader=@{character_name} Spell Casting}} {{heroics=@{spell07_desc}}} {{allow=[[@{spell07_used}]]}}"></button>
+                    </div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-1-10 sheet-checkbox-row">
+                        <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_spell08_used">
+                    </div>
+                    <div class="sheet-col-4-5">
+                        <select name="attr_spell08">
+                            <option value="No Spell" selected></option>
+                            <option value="Burning Light">Burning Light</option>
+                            <option value="Burning Mark">Burning Mark</option>
+                            <option value="Enchanted Steel">Enchanted Steel</option>
+                            <option value="Heal">Heal</option>
+                            <option value="Hold Creature">Hold Creature</option>
+                            <option value="Magic Bolt">Magic Bolt</option>
+                            <option value="Shield of Light">Shield of Light</option>
+                            <option value="Smoke">Smoke</option>
+                            <option value="Strong Heart">Strong Heart</option>
+                            <option value="Translate">Translate</option>
+                        </select>
+                    </div>
+                    <div class="sheet-col-1-10">
+                        <button type="roll" name="roll_Spell08" value="&{template:ShadowdeepRangers} {{spell=1}} {{title=@{spell08}}} {{subheader=@{character_name} Spell Casting}} {{heroics=@{spell08_desc}}} {{allow=[[@{spell08_used}]]}}"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-2-5">
+                    <div class="sheet-core-stat-label sheet-center">Items</div>
+                </div>
+                <div class="sheet-col-2-5">
+                    <div class="sheet-core-stat-label sheet-center">Magic Items</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-core-stat-label sheet-center">Uses</div>
+                </div>
+            </div>
+            <div class="sheet-col-2-5">
+                <input type="text" name="attr_item01">
+                <input type="text" name="attr_item02">
+                <input type="text" name="attr_item03">
+                <input type="text" name="attr_item04">
+                <input type="text" name="attr_item05">
+            </div>
+            <div class="sheet-col-2-5">
+                <input type="text" name="attr_magicitem01">
+                <input type="text" name="attr_magicitem02">
+                <input type="text" name="attr_magicitem03">
+                <input type="text" name="attr_magicitem04">
+                <input type="text" name="attr_magicitem05">
+            </div>
+            <div class="sheet-col-1-6">
+                <div class="sheet-checkbox-row">
+                    <input type="checkbox" value="1" name="attr_magicitem01_01">
+                    <input type="checkbox" value="1" name="attr_magicitem01_02">
+                    <input type="checkbox" value="1" name="attr_magicitem01_03">
+                    <input type="checkbox" value="1" name="attr_magicitem01_04">
+                    <input type="checkbox" value="1" name="attr_magicitem01_05">
+                </div>
+                <div class="sheet-checkbox-row">
+                    <input type="checkbox" value="1" name="attr_magicitem02_01">
+                    <input type="checkbox" value="1" name="attr_magicitem02_02">
+                    <input type="checkbox" value="1" name="attr_magicitem02_03">
+                    <input type="checkbox" value="1" name="attr_magicitem02_04">
+                    <input type="checkbox" value="1" name="attr_magicitem02_05">
+                </div>
+                <div class="sheet-checkbox-row">
+                    <input type="checkbox" value="1" name="attr_magicitem03_01">
+                    <input type="checkbox" value="1" name="attr_magicitem03_02">
+                    <input type="checkbox" value="1" name="attr_magicitem03_03">
+                    <input type="checkbox" value="1" name="attr_magicitem03_04">
+                    <input type="checkbox" value="1" name="attr_magicitem03_05">
+                </div>
+                <div class="sheet-checkbox-row">
+                    <input type="checkbox" value="1" name="attr_magicitem04_01">
+                    <input type="checkbox" value="1" name="attr_magicitem04_02">
+                    <input type="checkbox" value="1" name="attr_magicitem04_03">
+                    <input type="checkbox" value="1" name="attr_magicitem04_04">
+                    <input type="checkbox" value="1" name="attr_magicitem04_05">
+                </div>
+                <div class="sheet-checkbox-row">
+                    <input type="checkbox" value="1" name="attr_magicitem05_01">
+                    <input type="checkbox" value="1" name="attr_magicitem05_02">
+                    <input type="checkbox" value="1" name="attr_magicitem05_03">
+                    <input type="checkbox" value="1" name="attr_magicitem05_04">
+                    <input type="checkbox" value="1" name="attr_magicitem05_05">
+                </div>
+            </div>
+		</div>
+        <div class="sheet-col-2-5">
+            <div class="sheet-core-stat-label sheet-center">Skills <span class="sheet-kinda-hide-it"> ( <span name="attr_totalskillranks"></span> )</span></div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Acrobatics</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_acrobatics" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Acrobatics" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Acrobatics}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Acrobatics|@{acrobatics}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Ancient Lore</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_ancientlore" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_AncientLore" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Ancient Lore}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Ancient Lore|@{ancientlore}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Armoury</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_armoury" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Armoury" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Armoury}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Armoury|@{armoury}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Climb</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_climb" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Climb" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Climb}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Climb|@{climb}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Leadership</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_leadership" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Leadership" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Leadership}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Leadership|@{leadership}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Navigation</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_navigation" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Navigation" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Navigation}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Navigation|@{navigation}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Perception</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_perception" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Perception" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Perception}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Perception|@{perception}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Pick Lock</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_picklock" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_PickLock" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Pick Lock}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Pick Lock|@{picklock}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Read Runes</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_readrunes" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_ReadRunes" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Read Runes}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Read Runes|@{readrunes}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Stealth</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_stealth" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Stealth" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Stealth}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Stealth|@{stealth}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Strength</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_strength" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Strength" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Strength}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Strength|@{strength}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Survival</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_survival" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Survival" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Survival}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Survival|@{survival}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Swim</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_swim" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Swim" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Swim}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Swim|@{swim}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Track</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_track" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Track" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Track}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Track|@{track}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-skill-label sheet-padl">Traps</div>
+                </div>
+                <div class="sheet-col-1-5">
+                    <div class="sheet-small-label sheet-center"><input class="sheet-underlined sheet-center" type="number" name="attr_traps" value="0"></div>
+                </div>
+                <div class="sheet-col-1-10">
+                    <button type="roll" name="roll_Traps" value="&{template:ShadowdeepRangers} {{skill=1}} {{title=Traps}} {{subheader=@{character_name} Skill Roll}} {{check=[[1d20+(?{Traps|@{traps}})]]}} {{target=[[?{TN|20}]]}}"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sheet-row">
+		<div class="sheet-col-1-3">
+            <div class="sheet-core-stat-label sheet-center">Injuries</div>
+            <div class="sheet-row">
+                <div class="sheet-col-1-1">
+                    <input type="text" name="attr_injury01">
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-1-1">
+                    <input type="text" name="attr_injury02">
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-1-1">
+                    <input type="text" name="attr_injury03">
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-1-1">
+                    <input type="text" name="attr_injury04">
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-1-1">
+                    <input type="text" name="attr_injury05">
+                </div>
+            </div>
+            <div class="sheet-row">
+                <div class="sheet-col-1-1">
+                    <input type="text" name="attr_injury06">
+                </div>
+            </div>
+        </div>
+        <div class="sheet-col-1-6">
+            <div class="sheet-core-stat-label sheet-center">Conditions</div>
+            <div class="sheet-row">&nbsp;</div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-other-label">Poison</div>
+                </div>
+                <div class="sheet-col-3-10 sheet-checkbox-row">
+                    <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_poison">
+                </div>
+            </div>
+            <div class="sheet-row">&nbsp;</div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-other-label">Disease</div>
+                </div>
+                <div class="sheet-col-3-10 sheet-checkbox-row">
+                    <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_disease">
+                </div>
+            </div>
+            <div class="sheet-row">&nbsp;</div>
+            <div class="sheet-row">
+                <div class="sheet-col-7-10 sheet-padl">
+                    <div class="sheet-core-other-label">Hunger</div>
+                </div>
+                <div class="sheet-col-3-10 sheet-checkbox-row">
+                    <input type="checkbox" class="sheet-bigcheckbox" value="1" name="attr_hunger">
+                </div>
+            </div>
+        </div>
+        <div class="sheet-col-1-2">
+            <div class="sheet-core-stat-label sheet-center">Notes & Treasure</div>
+            <div class="sheet-row">
+                <textarea spellcheck="false" name="attr_notes"></textarea>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <select name="attr_shortcutbox">
+        <option value="DEFAULT" selected>Reconfigure</option>
+        <option value="GAP"></option>
+        <option value="Reset Scenario">Reset Scenario</option>
+        <option value="Reset Mission">Reset Mission</option>
+        <option value="GAP"></option>
+        <option value="Ranger">Ranger</option>
+        <option value="Arcanist">Arcanist (15)</option>
+        <option value="Archer">Archer (20)</option>
+        <option value="Barbarian">Barbarian (35)</option>
+        <option value="Conjurer20">Conjurer (20)</option>
+        <option value="Conjurer30">Conjurer (30)</option>
+        <option value="Guardsman">Guardsman (20)</option>
+        <option value="Hound">Hound (5)</option>
+        <option value="Warhound">Warhound (10)</option>
+        <option value="Bloodhound">Bloodhound (10)</option>
+        <option value="Knight">Knight (35)</option>
+        <option value="Man-at-Arms">Man-at-Arms (20)</option>
+        <option value="Raptor">Raptor (10)</option>
+        <option value="Recruit">Recruit (10)</option>
+        <option value="Rogue">Rogue (20)</option>
+        <option value="Savage">Savage (35)</option>
+        <option value="Swordsman">Swordsman (25)</option>
+        <option value="Templar">Templar (35)</option>
+        <option value="Tracker">Tracker (30)</option>
+    </select>
+<!----------------------------------------------------------->
+</div>
+<!-- Roll Templates -->
+<rolltemplate class="sheet-rolltemplate-ShadowdeepRangers">
+	<div class="sheet-rt-card">
+		<div class="sheet-rt-header{{#weapon}} sheet-weapon{{/weapon}}{{#spell}} sheet-spell{{/spell}}{{#ability}} sheet-ability{{/ability}}{{#save}} sheet-save{{/save}}{{#feature}} sheet-feature{{/feature}}{{#ddm}} sheet-ddm{{/ddm}}">
+			<div class="sheet-rt-title">{{title}}</div>
+			{{#subheader}}
+			<div class="sheet-rt-subheader">{{subheader}}{{#subheaderright}} &bullet; {{subheaderright}}{{/subheaderright}}</div>
+			{{/subheader}}
+			{{#subheader2}}
+			<div class="sheet-rt-subheader">{{subheader2}}{{#subheaderright2}} &bullet; {{subheaderright2}}{{/subheaderright2}}</div>
+			{{/subheader2}}
+		</div>
+		{{#emote}}
+		<p class="sheet-rt-emote">{{character_name}} {{emote}}</p>
+		{{/emote}}
+		<div class="sheet-main-content">
+			{{#check}}
+                <div class="sheet-row">
+                    <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Check</div>
+                    <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{check}}</div>
+                </div>
+                <div class="sheet-row">
+                    <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Target</div>
+                    <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{target}}</div>
+                </div>
+                {{#rollWasFumble() check}}
+                    <div class="sheet-row">
+                        <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Result</div>
+                        <div class="sheet-col-7-12 sheet-padr sheet-rt-value" style="color:red;">Failure!</div>
+                    </div>
+                {{/rollWasFumble() check}}
+                {{#^rollWasFumble() check}}
+                    {{#rollWasCrit() check}}
+                            <div class="sheet-row">
+                                <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Result</div>
+                                <div class="sheet-col-7-12 sheet-padr sheet-rt-value" style="color:green;">Success!</div>
+                            </div>
+                    {{/rollWasCrit() check}}
+                    {{#^rollWasCrit() check}}
+                        {{#rollLess() check target}}
+                            <div class="sheet-row">
+                                <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Result</div>
+                                <div class="sheet-col-7-12 sheet-padr sheet-rt-value" style="color:red;">Failure!</div>
+                            </div>
+                        {{/rollLess() check target}}
+                        {{#^rollLess() check target}}
+                            <div class="sheet-row">
+                                <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Result</div>
+                                <div class="sheet-col-7-12 sheet-padr sheet-rt-value" style="color:green;">Success!</div>
+                            </div>
+                        {{/^rollLess() check target}}
+                    {{/^rollWasCrit() check}}
+                {{/^rollWasFumble() check}}
+			{{/check}}
+			{{#fight}}
+                {{#rollWasFumble() fight}}
+                    <div class="sheet-row">
+                        <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">fight</div>
+                        <div class="sheet-col-7-12 sheet-padr sheet-rt-value" style="color:red;">hits AC {{fight}}, Fumble!</div>
+                    </div>
+                {{/rollWasFumble() fight}}
+                {{#^rollWasFumble() fight}}
+                    {{#rollWasCrit() fight}}
+                        <div class="sheet-row">
+                            <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">fight</div>
+                            <div class="sheet-col-7-12 sheet-padr sheet-rt-value" style="color:green;">hits AC {{fight}}, Critical!</div>
+                        </div>
+                        <div class="sheet-row">
+                            <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit Damage</div>
+                            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{critdamage}}</div>
+                        </div>
+                    {{/rollWasCrit() fight}}
+                    {{#^rollWasCrit() fight}}
+                        <div class="sheet-row">
+                            <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">fight</div>
+                            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">hits AC {{fight}}</div>
+                        </div>
+                        <div class="sheet-row">
+                            <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Damage</div>
+                            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{damage}}</div>
+                        </div>
+                    {{/^rollWasCrit() fight}}
+                {{/^rollWasFumble() fight}}
+			{{/fight}}
+            {{#shoot}}
+            
+            {{/shoot}}
+			{{#attacktext}}
+            <div class="sheet-row">
+				<div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{attacktext}}</div>
+			</div>
+			{{/attacktext}}
+			<!--Spellcasting-->
+			{{#heroics}}
+                {{#rollLess() allow 1}}
+                    <div class="sheet-row">
+                        <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{heroics}}</div>
+                    </div>
+                {{/rollLess() allow 1}}
+                {{#^rollLess() allow 1}}
+                    <div class="sheet-row">
+                        <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value" style="color:firebrick;">This ability has already been used!</div>
+                    </div>
+                {{/^rollLess() allow 1}}
+			{{/heroics}}
+			<!--Generic section-->
+			{{#freetext}}
+				<div class="sheet-row">
+					<div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-key-wide">{{freetextname}}</div>
+					<div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{freetext}}</div>
+				</div>
+			{{/freetext}}
+			<!--Outputall-->
+			{{#outputall}}
+				{{#allprops() outputall title subheader subheaderright subheader2 subheaderright2 emote fight shoot attacktext heroics weapon spell ability save feature ddm}}
+					<div class="sheet-row">
+						<div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">{{key}}</div>
+						<div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{value}}</div>
+					</div>
+				{{/allprops() outputall title subheader subheaderright subheader2 subheaderright2 emote fight shoot attacktext heroics weapon spell ability save feature ddm}}
+			{{/outputall}}
+			<!--DEBUG-->
+			{{#debug}}
+				{{#allprops()}}
+					<div class="sheet-row">
+						<div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">{{key}} (DEBUG)</div>
+						<div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{value}}</div>
+					</div>
+				{{/allprops()}}
+			{{/debug}}
+		</div>
+	</div>
+</rolltemplate>
+<!-- Sheet workers -->
+<script type="text/worker">
+
+// Heroic Abilities
+['ability01', 'ability02', 'ability03', 'ability04', 'ability05', 'ability06', 'ability07', 'ability08'].forEach(ability => {
+  on(`sheet:opened change:${ability}`, () => {
+    getAttrs([ability], v => {
+        const value = v[ability],
+        setting = {};
+        switch (value) {
+            case "Blend Into Shadows":
+                setting[`${ability}_desc`] = "This ability may be used if an evil ﬁgure is about to make a move that would take it into combat  with the ranger. Instead, determine the evil ﬁgure’s action as though the ranger were not on the table.";
+                break;
+            case "Dash":
+                setting[`${ability}_desc`] = "The ranger may use this ability when he is activated. For the rest of the turn, he receives +2 Move.  Alternatively, the ranger may use a move action to leap up to his Move distance in any direction, including vertically.";
+                break;
+            case "Deadly Shot":
+                setting[`${ability}_desc`] = "The ranger may use this ability if he has rolled a natural 18 or 19 during a shooting action. Treat this roll as a Critical Hit.";
+                break;
+            case "Deadly Strike":
+                setting[`${ability}_desc`] = "The ranger may use this ability if he has rolled a natural 18 or 19 during a ﬁght. Treat this roll as a Critical Hit.";
+                break;
+            case "Distraction":
+                setting[`${ability}_desc`] = "The ranger may use this ability whenever an evil creature is called upon to make a move towards the Target Point. The player may instead move this creature anywhere he wishes following the standard rules for movement, provided this move does not cause the creature direct harm or force it to make Swimming Rolls (i.e. no walking oﬀ a cliﬀ, or moving into ﬁre or deep water).";
+                break;
+            case "Dive for Cover":
+                setting[`${ability}_desc`] = "The ranger may add +10 to his Fight Roll when rolling against a shooting attack. He must declare he is using this ability before he rolls.";
+                break;
+            case "Evade":
+                setting[`${ability}_desc`] = "The ranger may use this ability if he activates while in combat. The ranger may make a free 1” move to leave the combat. No ﬁgure may force combat during this move. After this move, the ranger completes his activation as normal.";
+                break;
+            case "Focus":
+                setting[`${ability}_desc`] = "The ranger may add +8 to any one Skill Roll. He must declare he is using this ability before he rolls.";
+                break;
+            case "Frenzied Attack":
+                setting[`${ability}_desc`] = "The ranger may add +5 to one Fight Roll. He must declare he is using this ability before he rolls.";
+                break;
+            case "Halt Undead":
+                setting[`${ability}_desc`] = "All undead creatures within 10” and line of sight of the ranger must make a Will Roll (TN20). If they fail, they lose their next activation.";
+                break;
+            case "Hand of Fate":
+                setting[`${ability}_desc`] = "The ranger may re-roll one die.";
+                break;
+            case "Inner Strength":
+                setting[`${ability}_desc`] = "The ranger may add +5 to one Will Roll. This ability can be used after the roll has been made.";
+                break;
+            case "Parry":
+                setting[`${ability}_desc`] = "This ability may be used in combat after a ranger and his opponent have made their Fight Rolls. The ranger may add +10 to his roll. If he wins the combat, however, he does no damage. He may step back or push his opponent back as normal.";
+                break;
+            case "Powerful Blow":
+                setting[`${ability}_desc`] = "The hero may add +3 damage to any hand-to-hand attack that has already dealt at least 1 point of damage.";
+                break;
+            case "Roll with the Punch":
+                setting[`${ability}_desc`] = "This ability may be used if a ranger loses a ﬁght in hand-to-hand combat. Halve the amount of damage taken by the ranger, rounding up (e.g. if the ranger loses the combat and would suﬀer 7 points of damage, he suﬀers 4 instead).";
+                break;
+            case "Shove":
+                setting[`${ability}_desc`] = "If the ranger wins in hand-to-hand combat, he may choose to push his opponent back up to 4” instead of the normal 1”.";
+                break;
+            case "Steady Aim":
+                setting[`${ability}_desc`] = "The hero may add +5 Shoot for one Shooting Roll. This must be declared before the roll is made.";
+                break;
+            case "No Ability":
+            default:
+                setting[`${ability}_desc`] = "No Description.";
+        }
+        setAttrs(setting);
+    });
+  });
+});
+
+// Spells
+['spell01', 'spell02', 'spell03', 'spell04', 'spell05', 'spell06', 'spell07', 'spell08'].forEach(spell => {
+  on(`sheet:opened change:${spell}`, () => {
+    getAttrs([spell], v => {
+        const value = v[spell],
+        setting = {};
+        switch (value) {
+            case "Burning Light":
+                setting[`${spell}_desc`] = "Make a +3 attack against all undead creatures within 8” and line of sight of the caster.";
+                break;
+            case "Burning Mark":
+                setting[`${spell}_desc`] = "The caster may place a glowing rune anywhere within 6”. As soon as any evil creature moves  within 2” of this rune, it explodes. All evil creatures within 2” of the rune suﬀer a +5 magic shooting attack.";
+                break;
+            case "Enchanted Steel":
+                setting[`${spell}_desc`] = "The caster imbues one melee weapon with magic power. For the rest of the scenario, the weapon counts as a magic weapon with +1 Fight.";
+                break;
+            case "Heal":
+                setting[`${spell}_desc`] = "This spell may target any ﬁgure within 6” including the caster. The target ﬁgure regains up to 5 points of lost Health.";
+                break;
+            case "Hold Creature":
+                setting[`${spell}_desc`] = "The target creature must make an immediate Will Roll (TN16). If it fails, it may not force combat for the remainder of the turn, and it loses its next activation. This spell has no eﬀect on large creatures or undead.";
+                break;
+            case "Magic Bolt":
+                setting[`${spell}_desc`] = "The caster may make a +5 magic shooting attack against one ﬁgure within line of sight. This attack ignores penalties for cover and intervening terrain.";
+                break;
+            case "Shield of Light":
+                setting[`${spell}_desc`] = "This spell may be cast on any ﬁgure within 8” and line of sight. All shooting attacks against this ﬁgure are at -3 for the rest of the game.";
+                break;
+            case "Smoke":
+                setting[`${spell}_desc`] = "The caster may place a thick cloud of smoke, 3” in diameter, anywhere within 3”. The smoke blocks all line of sight but does not inhibit movement.";
+                break;
+            case "Strong Heart":
+                setting[`${spell}_desc`] = "This spell may be cast against any ﬁgure within 8” and line of sight. The next time this ﬁgure must make a Will Roll it does so with a +5 modiﬁer. The time after that, it receives +4, and so on, down to +0 when the spell’s eﬀect ends.";
+                break;
+            case "Translate":
+                setting[`${spell}_desc`] = "A ranger may cast this spell in place of making any Read Runes Skill Roll. The ranger automatically passes the Skill Roll with the highest result possible.";
+                break;
+            case "No Spell":
+            default:
+                setting[`${spell}_desc`] = "No Description.";
+        }
+        setAttrs(setting);
+    });
+  });
+});
+
+//Count my Skill Ranks so I don't have to.
+on('sheet:opened change:acrobatics change:ancientlore change:armoury change:climb change:leadership change:navigation change:perception change:picklock change:readrunes change:stealth change:strength change:survival change:swim change:track change:traps', function() {
+    getAttrs(["acrobatics","ancientlore","armoury","climb","leadership","navigation","perception","picklock","readrunes","stealth","strength","survival","swim","track","traps"], function(values) {
+        setAttrs({
+            totalskillranks: parseInt(values.acrobatics)+parseInt(values.ancientlore)+parseInt(values.armoury)+parseInt(values.climb)+parseInt(values.leadership)+parseInt(values.navigation)+parseInt(values.perception)+parseInt(values.picklock)+parseInt(values.readrunes)+parseInt(values.stealth)+parseInt(values.strength)+parseInt(values.survival)+parseInt(values.swim)+parseInt(values.track)+parseInt(values.traps)
+        });
+    });
+});
+
+//Quickly reconfigure the sheet.
+on('change:shortcutbox', function() {
+    getAttrs(["shortcutbox"], function(values) {
+        var buildoption = values.shortcutbox,
+        setting = {};
+        //Depending on what was chosen, we reconfigure most of the sheet.
+        setting["shortcutbox"] = "DEFAULT"
+        if (buildoption != "DEFAULT" && buildoption != "GAP" && buildoption != "Reset Scenario" && buildoption != "Reset Mission") {
+            setting["level"] = "0";
+            setting["experience"] = "0";
+            setting["ability01"] = "No Ability";
+            setting["ability01_used"] = "0";
+            setting["ability02"] = "No Ability";
+            setting["ability02_used"] = "0";
+            setting["ability03"] = "No Ability";
+            setting["ability03_used"] = "0";
+            setting["ability04"] = "No Ability";
+            setting["ability04_used"] = "0";
+            setting["ability05"] = "No Ability";
+            setting["ability05_used"] = "0";
+            setting["ability06"] = "No Ability";
+            setting["ability06_used"] = "0";
+            setting["ability07"] = "No Ability";
+            setting["ability07_used"] = "0";
+            setting["ability08"] = "No Ability";
+            setting["ability08_used"] = "0";
+            setting["spell01"] = "No Ability";
+            setting["spell01_used"] = "0";
+            setting["spell02"] = "No Spell";
+            setting["spell02_used"] = "0";
+            setting["spell03"] = "No Spell";
+            setting["spell03_used"] = "0";
+            setting["spell04"] = "No Spell";
+            setting["spell04_used"] = "0";
+            setting["spell05"] = "No Spell";
+            setting["spell05_used"] = "0";
+            setting["spell06"] = "No Spell";
+            setting["spell06_used"] = "0";
+            setting["spell07"] = "No Spell";
+            setting["spell07_used"] = "0";
+            setting["spell08"] = "No Spell";
+            setting["spell08_used"] = "0";
+            setting["acrobatics"] = "0";
+            setting["armoury"] = "0";
+            setting["leadership"] = "0";
+            setting["navigation"] = "0";
+            setting["survival"] = "0";
+            setting["swim"] = "0";
+            setting["item05"] = "";
+            setting["magicitem01"] = "";
+            setting["magicitem01_01"] = "";
+            setting["magicitem01_02"] = "";
+            setting["magicitem01_03"] = "";
+            setting["magicitem01_04"] = "";
+            setting["magicitem01_05"] = "";
+            setting["magicitem02"] = "";
+            setting["magicitem02_01"] = "";
+            setting["magicitem02_02"] = "";
+            setting["magicitem02_03"] = "";
+            setting["magicitem02_04"] = "";
+            setting["magicitem02_05"] = "";
+            setting["magicitem03"] = "";
+            setting["magicitem03_01"] = "";
+            setting["magicitem03_02"] = "";
+            setting["magicitem03_03"] = "";
+            setting["magicitem03_04"] = "";
+            setting["magicitem03_05"] = "";
+            setting["magicitem04"] = "";
+            setting["magicitem04_01"] = "";
+            setting["magicitem04_02"] = "";
+            setting["magicitem04_03"] = "";
+            setting["magicitem04_04"] = "";
+            setting["magicitem04_05"] = "";
+            setting["magicitem05"] = "";
+            setting["magicitem05_01"] = "";
+            setting["magicitem05_02"] = "";
+            setting["magicitem05_03"] = "";
+            setting["magicitem05_04"] = "";
+            setting["magicitem05_05"] = "";
+            setting["injuries01"] = "";
+            setting["injuries02"] = "";
+            setting["injuries03"] = "";
+            setting["injuries04"] = "";
+            setting["injuries05"] = "";
+            setting["injuries06"] = "";
+        }
+/*
+<option value="DEFAULT" selected>Reconfigure</option>
+<option value="GAP"></option>
+<option value="Reset Scenario">Reset Scenario</option>
+<option value="Reset Mission">Reset Mission</option>
+<option value="GAP"></option>
+<option value="Ranger">Ranger</option>
+<option value="Arcanist">Arcanist (15)</option>
+<option value="Archer">Archer (20)</option>
+<option value="Barbarian">Barbarian (35)</option>
+<option value="Conjurer20">Conjurer (20)</option>
+<option value="Conjurer30">Conjurer (30)</option>
+<option value="Guardsman">Guardsman (20)</option>
+<option value="Hound">Hound (5)</option>
+<option value="Warhound">Warhound (10)</option>
+<option value="Bloodhound">Bloodhound (10)</option>
+<option value="Knight">Knight (35)</option>
+<option value="Man-at-Arms">Man-at-Arms (20)</option>
+<option value="Raptor">Raptor (10)</option>
+<option value="Recruit">Recruit (10)</option>
+<option value="Savage">Savage (35)</option>
+<option value="Swordsman">Swordsman (25)</option>
+<option value="Templar">Templar (35)</option>
+<option value="Tracker">Tracker (30)</option>
+*/
+        switch (buildoption) {
+            case "Reset Scenario":
+                setting["ability01_used"] = "0";
+                setting["ability02_used"] = "0";
+                setting["ability03_used"] = "0";
+                setting["ability04_used"] = "0";
+                setting["ability05_used"] = "0";
+                setting["ability06_used"] = "0";
+                setting["ability07_used"] = "0";
+                setting["ability08_used"] = "0";
+                setting["spell01_used"] = "0";
+                setting["spell02_used"] = "0";
+                setting["spell03_used"] = "0";
+                setting["spell04_used"] = "0";
+                setting["spell05_used"] = "0";
+                setting["spell06_used"] = "0";
+                setting["spell07_used"] = "0";
+                setting["spell08_used"] = "0";
+                setting["poison"] = "0";
+                break;
+            case "Reset Mission":
+                setting["ability01_used"] = "0";
+                setting["ability02_used"] = "0";
+                setting["ability03_used"] = "0";
+                setting["ability04_used"] = "0";
+                setting["ability05_used"] = "0";
+                setting["ability06_used"] = "0";
+                setting["ability07_used"] = "0";
+                setting["ability08_used"] = "0";
+                setting["spell01_used"] = "0";
+                setting["spell02_used"] = "0";
+                setting["spell03_used"] = "0";
+                setting["spell04_used"] = "0";
+                setting["spell05_used"] = "0";
+                setting["spell06_used"] = "0";
+                setting["spell07_used"] = "0";
+                setting["spell08_used"] = "0";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                break;
+            case "Ranger":
+                setting["unittype"] = "Ranger";
+                setting["move"] = "6";
+                setting["fight"] = "2";
+                setting["shoot"] = "1";
+                setting["armour"] = "10";
+                setting["will"] = "4";
+                setting["health"] = "18";
+                setting["health_max"] = "18";
+                setting["recruitment"] = "100";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "";
+                setting["item02"] = "";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Arcanist":
+                setting["unittype"] = "Arcanist";
+                setting["move"] = "6";
+                setting["fight"] = "2";
+                setting["shoot"] = "0";
+                setting["armour"] = "10";
+                setting["will"] = "2";
+                setting["health"] = "10";
+                setting["health_max"] = "10";
+                setting["recruitment"] = "15";
+                setting["ancientlore"] = "5";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "5";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Hand Weapon";
+                setting["item02"] = "";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Archer":
+                setting["unittype"] = "Archer";
+                setting["move"] = "6";
+                setting["fight"] = "2";
+                setting["shoot"] = "2";
+                setting["armour"] = "11";
+                setting["will"] = "1";
+                setting["health"] = "10";
+                setting["health_max"] = "10";
+                setting["recruitment"] = "20";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Bow OR Crossbow";
+                setting["item02"] = "Dagger";
+                setting["item03"] = "Light Armour";
+                setting["item04"] = "Quiver";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Barbarian":
+                setting["unittype"] = "Barbarian";
+                setting["move"] = "6";
+                setting["fight"] = "4";
+                setting["shoot"] = "0";
+                setting["armour"] = "11";
+                setting["will"] = "3";
+                setting["health"] = "14";
+                setting["health_max"] = "14";
+                setting["recruitment"] = "35";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "5";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Hand Weapon";
+                setting["item02"] = "Shield";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Conjurer20":
+                setting["unittype"] = "Conjurer";
+                setting["move"] = "6";
+                setting["fight"] = "0";
+                setting["shoot"] = "0";
+                setting["armour"] = "10";
+                setting["will"] = "3";
+                setting["health"] = "12";
+                setting["health_max"] = "12";
+                setting["recruitment"] = "20";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Staff OR Hand Weapon";
+                setting["item02"] = "";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "May Select Two Spells.";
+                break;
+            case "Conjurer30":
+                setting["unittype"] = "Conjurer";
+                setting["move"] = "6";
+                setting["fight"] = "0";
+                setting["shoot"] = "0";
+                setting["armour"] = "10";
+                setting["will"] = "3";
+                setting["health"] = "12";
+                setting["health_max"] = "12";
+                setting["recruitment"] = "30";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Staff OR Hand Weapon";
+                setting["item02"] = "";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "May Select Three Spells.";
+                break;
+            case "Guardsman":
+                setting["unittype"] = "Guardsman";
+                setting["move"] = "6";
+                setting["fight"] = "3";
+                setting["shoot"] = "0";
+                setting["armour"] = "11";
+                setting["will"] = "2";
+                setting["health"] = "12";
+                setting["health_max"] = "12";
+                setting["recruitment"] = "20";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Two Handed Weapon";
+                setting["item02"] = "Light Armour";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Hound":
+                setting["unittype"] = "Hound";
+                setting["move"] = "8";
+                setting["fight"] = "0";
+                setting["shoot"] = "0";
+                setting["armour"] = "10";
+                setting["will"] = "-2";
+                setting["health"] = "6";
+                setting["health_max"] = "6";
+                setting["recruitment"] = "5";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "";
+                setting["item02"] = "";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "Animal, Cannot Carry Treasure or Items, Limited Skill Rolls.";
+                break;
+            case "Warhound":
+                setting["unittype"] = "Warhound";
+                setting["move"] = "8";
+                setting["fight"] = "1";
+                setting["shoot"] = "0";
+                setting["armour"] = "10";
+                setting["will"] = "-2";
+                setting["health"] = "8";
+                setting["health_max"] = "8";
+                setting["recruitment"] = "10";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "";
+                setting["item02"] = "";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "Animal, Cannot Carry Treasure or Items, Limited Skill Rolls.";
+                break;
+            case "Bloodhound":
+                setting["unittype"] = "Bloodhound";
+                setting["move"] = "8";
+                setting["fight"] = "0";
+                setting["shoot"] = "0";
+                setting["armour"] = "10";
+                setting["will"] = "-2";
+                setting["health"] = "6";
+                setting["health_max"] = "6";
+                setting["recruitment"] = "10";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "5";
+                setting["traps"] = "0";
+                setting["item01"] = "";
+                setting["item02"] = "";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "Animal, Cannot Carry Treasure or Items, Limited Skill Rolls, Ranger Tracking Bonus.";
+                break;
+            case "Knight":
+                setting["unittype"] = "Knight";
+                setting["move"] = "5";
+                setting["fight"] = "4";
+                setting["shoot"] = "0";
+                setting["armour"] = "13";
+                setting["will"] = "2";
+                setting["health"] = "12";
+                setting["health_max"] = "12";
+                setting["recruitment"] = "35";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "4";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Hand Weapon";
+                setting["item02"] = "Shield";
+                setting["item03"] = "Heavy Armour";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Man-at-Arms":
+                setting["unittype"] = "Man-at-Arms";
+                setting["move"] = "6";
+                setting["fight"] = "3";
+                setting["shoot"] = "0";
+                setting["armour"] = "12";
+                setting["will"] = "2";
+                setting["health"] = "12";
+                setting["health_max"] = "12";
+                setting["recruitment"] = "20";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Hand Weapon";
+                setting["item02"] = "Shield";
+                setting["item03"] = "Light Armour";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Raptor":
+                setting["unittype"] = "Raptor";
+                setting["move"] = "9";
+                setting["fight"] = "0";
+                setting["shoot"] = "0";
+                setting["armour"] = "14";
+                setting["will"] = "3";
+                setting["health"] = "1";
+                setting["health_max"] = "1";
+                setting["recruitment"] = "10";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "4";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "";
+                setting["item02"] = "";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "Animal, Cannot Carry Treasure or Items, Limited Skill Rolls.";
+                break;
+            case "Recruit":
+                setting["unittype"] = "Recruit";
+                setting["move"] = "6";
+                setting["fight"] = "2";
+                setting["shoot"] = "0";
+                setting["armour"] = "10";
+                setting["will"] = "2";
+                setting["health"] = "10";
+                setting["health_max"] = "10";
+                setting["recruitment"] = "10";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Hand Weapon";
+                setting["item02"] = "";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Rogue":
+                setting["unittype"] = "Rogue";
+                setting["move"] = "7";
+                setting["fight"] = "1";
+                setting["shoot"] = "1";
+                setting["armour"] = "10";
+                setting["will"] = "1";
+                setting["health"] = "10";
+                setting["health_max"] = "10";
+                setting["recruitment"] = "20";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "2";
+                setting["perception"] = "2";
+                setting["picklock"] = "5";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "5";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "5";
+                setting["item01"] = "Dagger";
+                setting["item02"] = "Throwing Knife";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Savage":
+                setting["unittype"] = "Savage";
+                setting["move"] = "6";
+                setting["fight"] = "4";
+                setting["shoot"] = "0";
+                setting["armour"] = "10";
+                setting["will"] = "3";
+                setting["health"] = "14";
+                setting["health_max"] = "14";
+                setting["recruitment"] = "35";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "5";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Two Handed Weapon";
+                setting["item02"] = "";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Swordsman":
+                setting["unittype"] = "Swordsman";
+                setting["move"] = "6";
+                setting["fight"] = "4";
+                setting["shoot"] = "0";
+                setting["armour"] = "11";
+                setting["will"] = "2";
+                setting["health"] = "12";
+                setting["health_max"] = "12";
+                setting["recruitment"] = "25";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Hand Weapon";
+                setting["item02"] = "Dagger";
+                setting["item03"] = "Light Armour";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Templar":
+                setting["unittype"] = "Templar";
+                setting["move"] = "5";
+                setting["fight"] = "4";
+                setting["shoot"] = "0";
+                setting["armour"] = "12";
+                setting["will"] = "2";
+                setting["health"] = "12";
+                setting["health_max"] = "12";
+                setting["recruitment"] = "35";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "4";
+                setting["track"] = "0";
+                setting["traps"] = "0";
+                setting["item01"] = "Two Handed Weapon";
+                setting["item02"] = "Heavy Armour";
+                setting["item03"] = "";
+                setting["item04"] = "";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "Tracker":
+                setting["unittype"] = "Tracker";
+                setting["move"] = "7";
+                setting["fight"] = "2";
+                setting["shoot"] = "2";
+                setting["armour"] = "11";
+                setting["will"] = "2";
+                setting["health"] = "12";
+                setting["health_max"] = "12";
+                setting["recruitment"] = "30";
+                setting["ancientlore"] = "0";
+                setting["climb"] = "0";
+                setting["perception"] = "0";
+                setting["picklock"] = "0";
+                setting["readrunes"] = "0";
+                setting["stealth"] = "0";
+                setting["strength"] = "0";
+                setting["track"] = "5";
+                setting["traps"] = "0";
+                setting["item01"] = "Staff";
+                setting["item02"] = "Bow";
+                setting["item03"] = "Quiver";
+                setting["item04"] = "Light Armour";
+                setting["poison"] = "0";
+                setting["disease"] = "0";
+                setting["hunger"] = "0";
+                setting["notes"] = "";
+                break;
+            case "DEFAULT":
+            case "GAP":
+            default:
+                break;
+        }
+        setAttrs(setting);
+    });
+});
+
+</script>
