@@ -38,11 +38,11 @@
 		</div>
 		<div class="sheet-col-1-10 sheet-core-stat-label sheet-center">
             Fight
-            <button class="sheet-headerbutton" type="roll" name="roll_Fight" value="&{template:ShadowdeepRangers} {{weapon=1}} {{subheader=@{character_name} vs @{target|Target1|character_name}}} {{title=Fight}} {{fight=[[1d20+(?{Fight|@{fight}})]]}} {{targetfight=[[1d20+(@{target|Target1|fight})]]}} {{armour=[[(?{Armour|@{armour}})]]}} {{targetarmour=[[(@{target|Target1|armour})]]}} 0"></button>
+            <button class="sheet-headerbutton" type="roll" name="roll_Fight" value="&{template:ShadowdeepRangers} {{weapon=1}} {{subheader=@{character_name} vs @{target|Target1|character_name}}} {{title=Fight}} {{you=@{character_name}}} {{them=@{target|Target1|character_name}}} {{fight=[[1d20+(@{fight})+(?{Your Fight Modifiers|0})]]}} {{targetfight=[[1d20+(@{target|Target1|fight})+(?{Their Fight Modifiers|0})]]}} {{armour=[[(@{armour})]]}} {{targetarmour=[[(@{target|Target1|armour})]]}} 0"></button>
         </div>
 		<div class="sheet-col-1-10 sheet-core-stat-label sheet-center">
             Shoot
-            <button class="sheet-headerbutton" type="roll" name="roll_Shoot" value="&{template:ShadowdeepRangers} {{weapon=1}} {{subheader=@{character_name} vs @{target|Target1|character_name}}} {{title=Shoot}} {{shoot=[[1d20+(?{Shoot|@{shoot}})]]}} {{targetfight=[[1d20+(@{target|Target1|fight})]]}} {{armour=[[(?{Armour|@{armour}})]]}} {{targetarmour=[[(@{target|Target1|armour})]]}} 0"></button>
+            <button class="sheet-headerbutton" type="roll" name="roll_Shoot" value="&{template:ShadowdeepRangers} {{weapon=1}} {{subheader=@{character_name} vs @{target|Target1|character_name}}} {{title=Shoot}} {{you=@{character_name}}} {{them=@{target|Target1|character_name}}} {{shoot=[[1d20+(@{shoot})+(?{Your Shoot Modifiers|0})]]}} {{targetfight=[[1d20+(@{target|Target1|fight})+(?{Their Fight Modifiers|0})]]}} {{armour=[[(@{armour})]]}} {{targetarmour=[[(@{target|Target1|armour})]]}} 0"></button>
 		</div>
 		<div class="sheet-col-1-8 sheet-core-stat-label sheet-center">
             Armour
@@ -900,38 +900,187 @@
                 {{/^rollWasFumble() check}}
 			{{/check}}
 			{{#fight}}
+                <div class="sheet-row">
+                    <div class="sheet-col-1-4 sheet-padl sheet-padr sheet-rt-key">You</div>
+                    <div class="sheet-col-1-4 sheet-padr sheet-rt-value">{{fight}}</div>
+                    <div class="sheet-col-1-4 sheet-padl sheet-padr sheet-rt-key">Them</div>
+                    <div class="sheet-col-1-4 sheet-padr sheet-rt-value">{{targetfight}}</div>
+                </div>
                 {{#rollWasFumble() fight}}
                     <div class="sheet-row">
-                        <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">fight</div>
-                        <div class="sheet-col-7-12 sheet-padr sheet-rt-value" style="color:red;">hits AC {{fight}}, Fumble!</div>
+                        <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} fumbles and is punished by {{them}}!</div>
+                    </div>
+                    <div class="sheet-row">
+                        <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{targetfight}} vs {{armour}}AR</div>
                     </div>
                 {{/rollWasFumble() fight}}
                 {{#^rollWasFumble() fight}}
                     {{#rollWasCrit() fight}}
                         <div class="sheet-row">
-                            <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">fight</div>
-                            <div class="sheet-col-7-12 sheet-padr sheet-rt-value" style="color:green;">hits AC {{fight}}, Critical!</div>
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} lands a critical blow on {{them}}!</div>
                         </div>
                         <div class="sheet-row">
-                            <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Crit Damage</div>
-                            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{critdamage}}</div>
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{fight}} +5 vs {{targetarmour}}AR</div>
                         </div>
                     {{/rollWasCrit() fight}}
                     {{#^rollWasCrit() fight}}
-                        <div class="sheet-row">
-                            <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">fight</div>
-                            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">hits AC {{fight}}</div>
-                        </div>
-                        <div class="sheet-row">
-                            <div class="sheet-col-5-12 sheet-padl sheet-padr sheet-rt-key">Damage</div>
-                            <div class="sheet-col-7-12 sheet-padr sheet-rt-value">{{damage}}</div>
-                        </div>
+                        {{#rollGreater() fight targetfight}}
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} strikes deftly at {{them}}!</div>
+                            </div>
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{fight}} vs {{targetarmour}}AR</div>
+                            </div>
+                        {{/rollGreater() fight targetfight}}
+                        {{#rollTotal() fight targetfight}}
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} is evenly matched, and strikes out at {{them}}!</div>
+                            </div>
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{fight}} vs {{targetarmour}}AR</div>
+                            </div>
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} is evenly matched, and is struck in turn by {{them}}!</div>
+                            </div>
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{targetfight}} vs {{armour}}AR</div>
+                            </div>
+                        {{/rollTotal() fight targetfight}}
+                        {{#rollLess() fight targetfight}}
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} is outfought by {{them}}!</div>
+                            </div>
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{targetfight}} vs {{armour}}AR</div>
+                            </div>
+                        {{/rollLess() fight targetfight}}
                     {{/^rollWasCrit() fight}}
                 {{/^rollWasFumble() fight}}
 			{{/fight}}
+            {{#monsterfight}}
+                <div class="sheet-row">
+                    <div class="sheet-col-1-4 sheet-padl sheet-padr sheet-rt-key">You</div>
+                    <div class="sheet-col-1-4 sheet-padr sheet-rt-value">{{monsterfight}}</div>
+                    <div class="sheet-col-1-4 sheet-padl sheet-padr sheet-rt-key">Them</div>
+                    <div class="sheet-col-1-4 sheet-padr sheet-rt-value">{{targetfight}}</div>
+                </div>
+                {{#rollWasFumble() monsterfight}}
+                    <div class="sheet-row">
+                        <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} fumbles and is punished by {{them}}!</div>
+                    </div>
+                    <div class="sheet-row">
+                        <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{targetfight}} vs {{armour}}AR</div>
+                    </div>
+                {{/rollWasFumble() monsterfight}}
+                {{#^rollWasFumble() monsterfight}}
+                    {{#rollGreater() monsterfight targetfight}}
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} strikes deftly at {{them}}!</div>
+                        </div>
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{monsterfight}} vs {{targetarmour}}AR</div>
+                        </div>
+                    {{/rollGreater() monsterfight targetfight}}
+                    {{#rollTotal() monsterfight targetfight}}
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} is evenly matched, and strikes out at {{them}}!</div>
+                        </div>
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{monsterfight}} vs {{targetarmour}}AR</div>
+                        </div>
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} is evenly matched, and is struck in turn by {{them}}!</div>
+                        </div>
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{targetfight}} vs {{armour}}AR</div>
+                        </div>
+                    {{/rollTotal() monsterfight targetfight}}
+                    {{#rollLess() monsterfight targetfight}}
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} is outfought by {{them}}!</div>
+                        </div>
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{targetfight}} vs {{armour}}AR</div>
+                        </div>
+                    {{/rollLess() monsterfight targetfight}}
+                {{/^rollWasFumble() monsterfight}}
+			{{/monsterfight}}
             {{#shoot}}
-            
-            {{/shoot}}
+                <div class="sheet-row">
+                    <div class="sheet-col-1-4 sheet-padl sheet-padr sheet-rt-key">You</div>
+                    <div class="sheet-col-1-4 sheet-padr sheet-rt-value">{{shoot}}</div>
+                    <div class="sheet-col-1-4 sheet-padl sheet-padr sheet-rt-key">Them</div>
+                    <div class="sheet-col-1-4 sheet-padr sheet-rt-value">{{targetfight}}</div>
+                </div>
+                {{#rollWasFumble() shoot}}
+                    <div class="sheet-row">
+                        <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} fumbles and misses {{them}} by a mile!</div>
+                    </div>
+                {{/rollWasFumble() shoot}}
+                {{#^rollWasFumble() shoot}}
+                    {{#rollWasCrit() shoot}}
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} lands a critical shot on {{them}}!</div>
+                        </div>
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{shoot}} +5 vs {{targetarmour}}AR</div>
+                        </div>
+                    {{/rollWasCrit() shoot}}
+                    {{#^rollWasCrit() shoot}}
+                        {{#rollGreater() shoot targetfight}}
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} hits {{them}} with a well placed shot.</div>
+                            </div>
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{shoot}} vs {{targetarmour}}AR</div>
+                            </div>
+                        {{/rollGreater() shoot targetfight}}
+                        {{#rollTotal() shoot targetfight}}
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} misses {{them}} by a hair!</div>
+                            </div>
+                        {{/rollTotal() shoot targetfight}}
+                        {{#rollLess() shoot targetfight}}
+                            <div class="sheet-row">
+                                <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} misses {{them}}.</div>
+                            </div>
+                        {{/rollLess() shoot targetfight}}
+                    {{/^rollWasCrit() shoot}}
+                {{/^rollWasFumble() shoot}}
+			{{/shoot}}
+            {{#monstershoot}}
+                <div class="sheet-row">
+                    <div class="sheet-col-1-4 sheet-padl sheet-padr sheet-rt-key">You</div>
+                    <div class="sheet-col-1-4 sheet-padr sheet-rt-value">{{monstershoot}}</div>
+                    <div class="sheet-col-1-4 sheet-padl sheet-padr sheet-rt-key">Them</div>
+                    <div class="sheet-col-1-4 sheet-padr sheet-rt-value">{{targetfight}}</div>
+                </div>
+                {{#rollWasFumble() monstershoot}}
+                    <div class="sheet-row">
+                        <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} fumbles and misses {{them}} by a mile!</div>
+                    </div>
+                {{/rollWasFumble() monstershoot}}
+                {{#^rollWasFumble() monstershoot}}
+                    {{#rollGreater() monstershoot targetfight}}
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} hits {{them}} with a well placed shot.</div>
+                        </div>
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value sheet-center">{{monstershoot}} vs {{targetarmour}}AR</div>
+                        </div>
+                    {{/rollGreater() monstershoot targetfight}}
+                    {{#rollTotal() monstershoot targetfight}}
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} misses {{them}} by a hair!</div>
+                        </div>
+                    {{/rollTotal() monstershoot targetfight}}
+                    {{#rollLess() monstershoot targetfight}}
+                        <div class="sheet-row">
+                            <div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{you}} misses {{them}}.</div>
+                        </div>
+                    {{/rollLess() monstershoot targetfight}}
+                {{/^rollWasFumble() monstershoot}}
+			{{/monstershoot}}
 			{{#attacktext}}
             <div class="sheet-row">
 				<div class="sheet-col-1 sheet-padl sheet-padr sheet-rt-value">{{attacktext}}</div>
@@ -1189,31 +1338,7 @@ on('change:shortcutbox', function() {
             setting["injuries05"] = "";
             setting["injuries06"] = "";
         }
-/*
-<option value="DEFAULT" selected>Reconfigure</option>
-<option value="GAP"></option>
-<option value="Reset Scenario">Reset Scenario</option>
-<option value="Reset Mission">Reset Mission</option>
-<option value="GAP"></option>
-<option value="Ranger">Ranger</option>
-<option value="Arcanist">Arcanist (15)</option>
-<option value="Archer">Archer (20)</option>
-<option value="Barbarian">Barbarian (35)</option>
-<option value="Conjurer20">Conjurer (20)</option>
-<option value="Conjurer30">Conjurer (30)</option>
-<option value="Guardsman">Guardsman (20)</option>
-<option value="Hound">Hound (5)</option>
-<option value="Warhound">Warhound (10)</option>
-<option value="Bloodhound">Bloodhound (10)</option>
-<option value="Knight">Knight (35)</option>
-<option value="Man-at-Arms">Man-at-Arms (20)</option>
-<option value="Raptor">Raptor (10)</option>
-<option value="Recruit">Recruit (10)</option>
-<option value="Savage">Savage (35)</option>
-<option value="Swordsman">Swordsman (25)</option>
-<option value="Templar">Templar (35)</option>
-<option value="Tracker">Tracker (30)</option>
-*/
+        
         switch (buildoption) {
             case "Reset Scenario":
                 setting["ability01_used"] = "0";
